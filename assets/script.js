@@ -3,9 +3,31 @@ let cBody = $(".card-body")
 let weather = $("#weather")
 let preset = $(".preset")
 let current = $("#current")
+let search = $("#search")
+
+let createFavorite = function(param){
+    localStorage.setItem(param, param)
+}
+
+// let loadFavorites = function(param){
+//     for(let i = 0; i < localStorage.length; i++){
+//         let favorite = document.createElement("a")
+//         favorite.classList.add("btn")
+//         favorite.classList.add("btn-secondary")
+//         favorite.classList.add("col-12")
+//         favorite.classList.add("m-3")
+//         favorite.classList.add("preset")
+//         let localKey = JSON.stringify(localStorage.getItem(param))
+//         favorite.innerHTML = param
+//         $(favorite).attr(param)
+//         search.append($(favorite));
+//         favorite.click(presetSearch)
+//     }
+// }
 
 $("#submit").click(function(){
     weatherSearch(query.val());
+    // createFavorite(query.val())
 })
 
 preset.click(function(){
@@ -16,6 +38,7 @@ preset.click(function(){
 function weatherSearch(param){
     weather.empty()
     current.empty()
+    
     if(param != ""){fetch("http://api.openweathermap.org/data/2.5/forecast?q=" + param + "&units=imperial&appid=7cfd96e09578686d48a4d422e2ebfb44")
     .then(function(response){
         return response.json();
@@ -23,7 +46,10 @@ function weatherSearch(param){
     .then(function(data){
         let dataList = $(data)
         let first = dataList[0].list.slice(0,1)
-        let nextFive = dataList[0].list.slice(1,6)
+        let nextFive = []
+        for(let i = 7; i < 40; i+=8){
+            nextFive.push(dataList[0].list[i])
+        }
         nextFive.forEach(function(item){
             let unixTimestamp = item.dt
             let milliseconds = unixTimestamp * 1000
@@ -97,3 +123,5 @@ function weatherSearch(param){
         })
     })}
 }
+
+
