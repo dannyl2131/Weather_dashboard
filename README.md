@@ -6,6 +6,7 @@ You will be provided with a list of popular cities in the US to choose from if y
 
 ##Deployed URL
 Here is a link to the deployed application
+https://dannyl2131.github.io/Weather_dashboard/
 
 ##
 Example picture
