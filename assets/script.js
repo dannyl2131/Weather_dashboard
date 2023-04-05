@@ -39,7 +39,7 @@ function weatherSearch(param){
     weather.empty()
     current.empty()
     
-    if(param != ""){fetch("http://api.openweathermap.org/data/2.5/forecast?q=" + param + "&units=imperial&appid=7cfd96e09578686d48a4d422e2ebfb44")
+    if(param != ""){fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + param + "&units=imperial&appid=7cfd96e09578686d48a4d422e2ebfb44")
     .then(function(response){
         return response.json();
     })
